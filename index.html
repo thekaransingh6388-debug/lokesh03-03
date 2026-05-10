@@ -109,7 +109,7 @@
             font-weight: 600;
         }
 
-        /* BUTTON - New Colour (Electric Violet/Purple) */
+        /* BUTTON - Fixed class name */
         .join-btn {
             display: flex;
             align-items: center;
@@ -282,13 +282,11 @@
             </div>
         </div>
 
-        <!-- ✅ BUTTON 1 - TOP with Purple Colour -->
+        <!-- BUTTON 1 - TOP with correct class and ID -->
         <div class="top-button">
-            <div class="button-container">
-  <a href="https://t.me/+6LHAgefKICBjZDFl" target="_blank" class="btn">
-    🚀 JOIN TELEGRAM CHANNEL
-  </a>
-</div>
+            <a id="topJoinBtn" href="https://t.me/+6LHAgefKICBjZDFl" target="_blank" class="join-btn">
+                🚀 JOIN TELEGRAM CHANNEL
+            </a>
         </div>
 
         <div class="tagline">
@@ -324,13 +322,11 @@
             </div>
         </div>
 
-        <!-- ✅ BUTTON 2 - BOTTOM with Purple Colour -->
+        <!-- BUTTON 2 - BOTTOM with correct class and ID -->
         <div class="bottom-button">
-            <<div class="button-container">
-  <a href="https://t.me/+6LHAgefKICBjZDFl" target="_blank" class="btn">
-    🚀 JOIN TELEGRAM CHANNEL
-  </a>
-</div>
+            <a id="bottomJoinBtn" href="https://t.me/+6LHAgefKICBjZDFl" target="_blank" class="join-btn">
+                🚀 JOIN TELEGRAM CHANNEL
+            </a>
         </div>
 
         <!-- Trust Signals -->
@@ -349,7 +345,7 @@
 </div>
 
 <script>
-    // Both buttons working fine
+    // Both buttons working fine with console tracking
     document.getElementById('topJoinBtn').addEventListener('click', function() {
         console.log('✅ Top button clicked - Opening Telegram');
     });

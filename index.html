@@ -5,22 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>PANKAJ BHARDWAJ | Stock Market Telegram</title>
     
-    <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code - Complete with Advanced Tracking -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1592825858766396');
-    fbq('track', 'PageView');
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1394719815529602');
+        fbq('track', 'PageView');
+        
+        // Track additional ViewContent for better analytics
+        fbq('track', 'ViewContent', {
+            content_name: 'PANKAJ_BHARDWAJ_Landing_Page',
+            content_category: 'Stock_Market_Telegram',
+            content_type: 'landing_page',
+            currency: 'INR'
+        });
+        
+        console.log('✅ Facebook Pixel Initialized - Pixel ID: 1394719815529602');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1592825858766396&ev=PageView&noscript=1"
-    /></noscript>
+    
+    <noscript>
+        <img height="1" width="1" style="display:none" 
+             src="https://www.facebook.com/tr?id=1394719815529602&ev=PageView&noscript=1"/>
+    </noscript>
     <!-- End Meta Pixel Code -->
     
     <style>
@@ -236,6 +248,30 @@
             color: #444444;
             margin-top: 8px;
         }
+        
+        /* Toast notification for tracking feedback */
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .toast-msg.show {
+            opacity: 1;
+        }
 
         @media (max-width: 480px) {
             .content {
@@ -257,6 +293,11 @@
             }
             .tagline {
                 font-size: 0.8rem;
+            }
+            .toast-msg {
+                font-size: 11px;
+                white-space: nowrap;
+                bottom: 20px;
             }
         }
 
@@ -344,16 +385,267 @@
     </div>
 </div>
 
+<!-- Toast notification for tracking feedback -->
+<div id="trackingToast" class="toast-msg">✅ Tracking confirmed! Redirecting to Telegram...</div>
+
+<!-- Advanced Facebook Pixel Event Tracking with Subscribe Button Tracking -->
 <script>
-    // Both buttons working fine with console tracking
-    document.getElementById('topJoinBtn').addEventListener('click', function() {
-        console.log('✅ Top button clicked - Opening Telegram');
-    });
-    
-    document.getElementById('bottomJoinBtn').addEventListener('click', function() {
-        console.log('✅ Bottom button clicked - Opening Telegram');
-    });
+    (function() {
+        // Helper to show toast message
+        function showToastMessage(message, duration = 1800) {
+            const toast = document.getElementById('trackingToast');
+            if (toast) {
+                toast.textContent = message || '✅ Tracking confirmed! Redirecting to Telegram...';
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+        }
+        
+        // Track Subscribe/Join button click with full event data for Meta Pixel
+        function trackSubscribeClick(buttonElement, buttonPosition) {
+            if (typeof fbq === 'function') {
+                // Track Lead event (most important for conversions - when user joins)
+                fbq('track', 'Lead', {
+                    content_name: 'PANKAJ_BHARDWAJ_Telegram_Join',
+                    content_category: 'Stock_Market_Subscription',
+                    button_position: buttonPosition,
+                    channel_name: 'PANKAJ_BHARDWAJ_OFFICIAL',
+                    currency: 'INR',
+                    value: 1,
+                    predicted_ltv: 0
+                });
+                
+                // Track custom event 'Subscribe' for detailed analytics
+                fbq('trackCustom', 'TelegramSubscribeClick', {
+                    button_location: buttonPosition,
+                    page_section: buttonPosition === 'Top' ? 'Hero Section' : 'Bottom CTA Section',
+                    timestamp: new Date().toISOString(),
+                    channel_link: 'https://t.me/+6LHAgefKICBjZDFl',
+                    brand: 'PANKAJ_BHARDWAJ'
+                });
+                
+                // Track standard 'Contact' event
+                fbq('track', 'Contact', {
+                    contact_method: 'Telegram_Channel',
+                    button_position: buttonPosition,
+                    contact_type: 'Channel_Join',
+                    brand: 'PANKAJ_BHARDWAJ'
+                });
+                
+                console.log(`✅ Facebook Pixel Events Tracked: Lead, TelegramSubscribeClick, Contact (${buttonPosition} button) | PANKAJ BHARDWAJ`);
+                showToastMessage(`🎯 Joined! Pixel event tracked (${buttonPosition})`, 1500);
+            } else {
+                console.error('❌ Facebook Pixel not initialized, event not tracked');
+                showToastMessage(`⚠️ Joining channel...`, 1200);
+            }
+        }
+        
+        // Enhanced click handler with proper pixel tracking before navigation
+        function handleButtonClick(event, position) {
+            const targetUrl = event.currentTarget.href;
+            
+            // Prevent double tracking
+            if (event.currentTarget.hasAttribute('data-tracked')) {
+                return true;
+            }
+            
+            // Mark as tracked to avoid duplicate events
+            event.currentTarget.setAttribute('data-tracked', 'true');
+            
+            // Track the pixel events
+            trackSubscribeClick(event.currentTarget, position);
+            
+            // Allow navigation after a micro delay for pixel to fire properly
+            if (targetUrl && targetUrl !== '#') {
+                event.preventDefault();
+                setTimeout(function() {
+                    window.open(targetUrl, '_blank');
+                }, 150);
+            }
+            
+            return false;
+        }
+        
+        // Replace buttons with fresh ones to avoid duplicate listeners and ensure clean tracking
+        const topBtn = document.getElementById('topJoinBtn');
+        const bottomBtn = document.getElementById('bottomJoinBtn');
+        
+        if (topBtn) {
+            const newTopBtn = topBtn.cloneNode(true);
+            topBtn.parentNode.replaceChild(newTopBtn, topBtn);
+            newTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleButtonClick(e, 'Top');
+            });
+        }
+        
+        if (bottomBtn) {
+            const newBottomBtn = bottomBtn.cloneNode(true);
+            bottomBtn.parentNode.replaceChild(newBottomBtn, bottomBtn);
+            newBottomBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                handleButtonClick(e, 'Bottom');
+            });
+        }
+        
+        // Track scroll depth for engagement analytics
+        let maxScrollPercent = 0;
+        let scrollTracked25 = false;
+        let scrollTracked50 = false;
+        let scrollTracked75 = false;
+        
+        function trackScrollDepth() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight <= 0) return;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            if (scrollPercent > maxScrollPercent) {
+                maxScrollPercent = Math.min(100, Math.floor(scrollPercent));
+            }
+            
+            if (!scrollTracked25 && maxScrollPercent >= 25) {
+                scrollTracked25 = true;
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'ScrollDepth', { depth: '25%', page: 'PANKAJ_BHARDWAJ_Landing', brand: 'PANKAJ_BHARDWAJ' });
+                    console.log('📊 Scroll depth 25% tracked | PANKAJ BHARDWAJ');
+                }
+            }
+            if (!scrollTracked50 && maxScrollPercent >= 50) {
+                scrollTracked50 = true;
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'ScrollDepth', { depth: '50%', page: 'PANKAJ_BHARDWAJ_Landing', brand: 'PANKAJ_BHARDWAJ' });
+                    console.log('📊 Scroll depth 50% tracked | PANKAJ BHARDWAJ');
+                }
+            }
+            if (!scrollTracked75 && maxScrollPercent >= 75) {
+                scrollTracked75 = true;
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'ScrollDepth', { depth: '75%', page: 'PANKAJ_BHARDWAJ_Landing', brand: 'PANKAJ_BHARDWAJ' });
+                    console.log('📊 Scroll depth 75% tracked | PANKAJ BHARDWAJ');
+                }
+            }
+        }
+        
+        // Throttle scroll tracking
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(trackScrollDepth, 300);
+        });
+        
+        // Track time on page for engagement metrics
+        let startTime = Date.now();
+        let trackedTime30 = false;
+        let trackedTime60 = false;
+        
+        setInterval(function() {
+            const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+            if (!trackedTime30 && elapsedSeconds >= 30) {
+                trackedTime30 = true;
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'TimeOnPage', { duration: '30s', page: 'PANKAJ_BHARDWAJ_Landing', brand: 'PANKAJ_BHARDWAJ' });
+                    console.log('⏱️ Time on page 30 seconds tracked | PANKAJ BHARDWAJ');
+                }
+            }
+            if (!trackedTime60 && elapsedSeconds >= 60) {
+                trackedTime60 = true;
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'TimeOnPage', { duration: '60s', page: 'PANKAJ_BHARDWAJ_Landing', brand: 'PANKAJ_BHARDWAJ' });
+                    console.log('⏱️ Time on page 60 seconds tracked | PANKAJ BHARDWAJ');
+                }
+            }
+        }, 1000);
+        
+        // Track button hover intent (shows interest)
+        window.addEventListener('load', function() {
+            const topButtonFinal = document.querySelector('#topJoinBtn');
+            const bottomButtonFinal = document.querySelector('#bottomJoinBtn');
+            
+            function trackHoverIntent(position) {
+                if (typeof fbq === 'function') {
+                    fbq('trackCustom', 'ButtonHoverIntent', {
+                        button_position: position,
+                        event_type: 'hover',
+                        brand: 'PANKAJ_BHARDWAJ'
+                    });
+                    console.log(`🖱️ Hover intent tracked on ${position} button | PANKAJ BHARDWAJ`);
+                }
+            }
+            
+            if (topButtonFinal) {
+                let hoverTimer;
+                topButtonFinal.addEventListener('mouseenter', function() {
+                    hoverTimer = setTimeout(function() {
+                        trackHoverIntent('Top');
+                    }, 500);
+                });
+                topButtonFinal.addEventListener('mouseleave', function() {
+                    if (hoverTimer) clearTimeout(hoverTimer);
+                });
+            }
+            
+            if (bottomButtonFinal) {
+                let hoverTimerBottom;
+                bottomButtonFinal.addEventListener('mouseenter', function() {
+                    hoverTimerBottom = setTimeout(function() {
+                        trackHoverIntent('Bottom');
+                    }, 500);
+                });
+                bottomButtonFinal.addEventListener('mouseleave', function() {
+                    if (hoverTimerBottom) clearTimeout(hoverTimerBottom);
+                });
+            }
+            
+            // Track that user saw the important features section
+            const pointsSection = document.querySelector('.points-section');
+            if (pointsSection && typeof IntersectionObserver !== 'undefined') {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            if (typeof fbq === 'function') {
+                                fbq('trackCustom', 'FeaturesViewed', {
+                                    section: 'NIFTY_BANKNIFTY_Options',
+                                    timestamp: new Date().toISOString(),
+                                    brand: 'PANKAJ_BHARDWAJ'
+                                });
+                                console.log('👁️ Features section viewed - high value content | PANKAJ BHARDWAJ');
+                            }
+                            observer.disconnect();
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(pointsSection);
+            }
+        });
+        
+        // Add additional page view tracking with more details after load
+        window.addEventListener('load', function() {
+            if (typeof fbq === 'function') {
+                fbq('track', 'ViewContent', {
+                    content_type: 'product',
+                    content_ids: ['PANKAJ_BHARDWAJ_TG_LP'],
+                    content_name: 'PANKAJ BHARDWAJ Stock Market Channel',
+                    user_status: 'landing_page_view',
+                    brand: 'PANKAJ_BHARDWAJ'
+                });
+                console.log('✅ Enhanced ViewContent event tracked after page load | PANKAJ BHARDWAJ');
+            }
+        });
+        
+        console.log('🎯 Facebook Pixel Active | Pixel ID: 1394719815529602 | PANKAJ BHARDWAJ | Subscribe button tracking fully enabled');
+    })();
 </script>
+
+<!-- Noscript fallback for pixel tracking on button click (if JS fails) -->
+<noscript>
+    <div style="display:none;">
+        <img height="1" width="1" style="display:none" alt="fbpixel" 
+             src="https://www.facebook.com/tr?id=1394719815529602&ev=Lead&cd[content_name]=PANKAJ_BHARDWAJ_Telegram_Join&noscript=1"/>
+    </div>
+</noscript>
 
 </body>
 </html>
